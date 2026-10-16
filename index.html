@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Withings authorization code</title>
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; max-width: 640px; margin: 48px auto; padding: 0 20px; color: #1a1a1a; }
+  h2 { font-size: 1.3rem; }
+  code { display: block; word-break: break-all; background: #f2f2f2; border: 1px solid #ddd; border-radius: 8px; padding: 14px; margin: 16px 0; font-size: 0.95rem; }
+  button { font-size: 1rem; padding: 10px 20px; border-radius: 8px; border: 1px solid #ccc; background: #fff; cursor: pointer; }
+  button:active { background: #eee; }
+  .note { color: #666; font-size: 0.9rem; margin-top: 24px; }
+  .err { color: #b00; }
+</style>
+</head>
+<body>
+<h2>Withings authorization code</h2>
+<p>Copy the code below and send it to Pikai. It expires in 30 seconds.</p>
+<code id="code">reading…</code>
+<button id="copy">Copy code</button>
+<p class="note">This page only displays the code Withings sent back — nothing is stored or transmitted anywhere.</p>
+<script>
+  var q = new URLSearchParams(location.search);
+  var c = q.get('code');
+  var el = document.getElementById('code');
+  if (c) { el.textContent = c; }
+  else { el.innerHTML = '<span class="err">No code found in URL.</span> ' + location.search; }
+  document.getElementById('copy').onclick = function () {
+    navigator.clipboard.writeText(el.textContent);
+    this.textContent = 'Copied!';
+  };
+</script>
+</body>
+</html>
